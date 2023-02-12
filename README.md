@@ -7,6 +7,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 (安装对应依赖，可以先 cd 到项目总目录下，再执行: npm install)
+
 First, run the development server:
 
 ```bash
