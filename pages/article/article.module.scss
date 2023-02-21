@@ -1,0 +1,158 @@
+.page__main {
+    display: block;
+    max-width: 1140px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    // margin-top: 81px;
+    /* tag2 */
+    margin-top: 110px;
+    margin-bottom: 80px;
+    background-color: #d6d4cb48;
+    /* tag */
+}
+.article-main{
+    width: 100%;
+    margin: 0 auto;
+    /* tag1 */
+    display: flex;
+
+}
+
+.article-area{
+    width: 820px;
+    margin-right: 21px;
+}
+
+.article{
+    padding: 32px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.article .article-title{
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: #252933;
+    word-wrap: break-word;
+}
+
+.article .article-info-box{
+    width: 100%;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.13); 
+    display: flex;
+    align-items: center;
+}
+
+.article-img{
+    width: 100%;
+    height: 425px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.article-content{
+    width: 100%;
+    // minheight: 97px;
+    min-height: 97px;
+    display: flex;
+}
+/* tag3↑ */
+
+.tag-list-box{
+    width: 100%;
+    height: 32px;
+    display: flex;
+    /* background: rgba(0, 0, 0, 0.089); */
+    font-size: .9rem;
+    line-height: 32px;
+    color: #515767d8;
+}
+
+.comment{
+    display: block;
+    width: 100%;
+    height: 176px; 
+    background: #fff;
+    margin-top: 21px;
+    border-radius: 4px;
+    padding: 0px 32px;
+    box-sizing: border-box;
+    /* margin-bottom: 60px; */
+}
+
+// 侧边栏 开始
+.sidebar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 600px;
+    flex: 1;
+    background: rgba(146, 231, 77, 0.63);
+    /* background: #fff; */
+}
+
+/* tag5 */
+/* 作者信息栏 ！！ */
+
+/* 左侧功能栏 */
+.article-suspended-panel{
+    width: 48px;
+    height: 300px;
+    background: rgba(0, 0, 0, 0.157);
+    position: fixed;
+    top: 140px;
+    left: 5px;
+}
+
+.panel-btn{
+    width: 100%;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 20px #dadddd;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.panel-btn>img{
+    width: 17px;
+    height: 17px;
+}
+.panel-btn:nth-child(4){
+    margin-bottom: 40px;
+    position: relative;
+}
+.panel-btn:nth-child(4)::after{
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    width: 30px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.157);
+}
+
+
+.article {
+    margin: 0 auto,
+}
+
+.content {
+    margin-top: 100px;
+    margin-bottom: 5rem;
+    font-size: 16px;
+    line-height: 32px;
+
+    img {
+        width: 50rem;
+    }
+}

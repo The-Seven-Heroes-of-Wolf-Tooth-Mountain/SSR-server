@@ -114,7 +114,7 @@ const HOC =
                       <div key={item}>
                         {/* 子组件 */}
                         <Component
-                          id={item.content}
+                          content={item.content}
                           {...props}
                           index={item.id}
                         />

@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from "react";
-import img from "@/img/fire.png";
-import Image from "next/image";
+
 import HOC from "@/components/Ifinitlist/HOC";
 import Mock from "mockjs";
+
 // 子组件
-const Item: React.FC<{ id: any; index?: number }> = ({ id, index }) => {
+const Item: React.FC<{ content: any; index?: number }> = ({
+  content,
+  index,
+}) => {
   return (
     <div
       style={{
-        display: "flex",
+        // display: "flex",
+        // flexDirection: "column",
         alignItems: "center",
         padding: 5,
-        margin: "0 auto",
+        height: "140px",
+        backgroundColor: "rgb(255, 255, 255)",
+        borderBottom: `1px solid var(--juejin-font-4)`,
       }}
     >
       {/* <Image src={img} height={60} alt="" />
       列表{id} */}
-      列表{index}: {id}
+      <h1>列表{index}</h1>
+      <div>{content}</div>
     </div>
   );
 };
@@ -24,7 +31,7 @@ const Item: React.FC<{ id: any; index?: number }> = ({ id, index }) => {
 const ItemHoc = HOC(Item);
 
 const Index: React.FC<any> = (props) => {
-  const [list, setList] = useState<any>([]);
+  const [list, setList] = useState<Array<number>>([]);
 
   useEffect(() => {
     let arr: any[] = [];

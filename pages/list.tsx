@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-
+import styles from "./index.module.scss";
 import HOC from "@/components/Ifinitlist/HOC";
 import Mock from "mockjs";
 // 子组件
-const Item: React.FC<{ id: any; index?: number }> = ({ id, index }) => {
+const Item: React.FC<{ content: any; index?: number }> = ({
+  content,
+  index,
+}) => {
   return (
     <div
+      className={styles.paragraph}
       style={{
-        display: "flex",
-        alignItems: "center",
+        // display: "flex",
+        // flexDirection: "column",
+        // alignItems: "center",
         padding: 5,
         height: "140px",
         backgroundColor: "rgb(255, 255, 255)",
@@ -17,7 +22,8 @@ const Item: React.FC<{ id: any; index?: number }> = ({ id, index }) => {
     >
       {/* <Image src={img} height={60} alt="" />
       列表{id} */}
-      列表{index}: {id}
+      <h1>列表{index}</h1>
+      <p>{content}</p>
     </div>
   );
 };
