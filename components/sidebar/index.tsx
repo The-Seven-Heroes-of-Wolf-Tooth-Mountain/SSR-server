@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Sidebar() {
   //   var arr: object[] = [];
-  const [list, setList] = useState();
+  const [list, setList] = useState<any[]>();
   useEffect(() => {
     let arr = [];
     const body = document.querySelector("#articlebody");
@@ -20,12 +20,13 @@ export default function Sidebar() {
     for (let key of childrenNodes) {
       if (key.nodeName === "H2") arr.push(key);
     }
-    // setList(arr);
-  });
+    setList(arr);
+    console.log(list);
+  }, []);
   return (
     <div>
-      {/* {list?.map((item, index) => {
-        return <div>{item.HTML}</div>;
+      {/*  {list?.map((item, index) => {
+        return <></>;
       })} */}
     </div>
   );
