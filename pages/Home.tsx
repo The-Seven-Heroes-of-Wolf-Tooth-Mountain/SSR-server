@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
+import { createRef, useEffect, useRef } from "react";
 import styles from "./index.module.scss";
+import TocHelper from "toc-helper";
 
 interface IProps {
   title: string;

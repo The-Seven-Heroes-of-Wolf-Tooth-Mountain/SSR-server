@@ -3,7 +3,10 @@ import type { NextPage } from "next";
 import styles from "./article.module.scss";
 const showdown = require("showdown");
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import TocHelper from "toc-helper";
+import sidebar from "@/components/sidebar";
+import Sidebar from "@/components/sidebar";
 
 export interface IArticleProps {
   title: string;
@@ -21,10 +24,14 @@ const Article: NextPage<IArticleProps> = ({
   content,
 }) => {
   const converter = new showdown.Converter();
-
+  const elementRef = useRef();
+  useEffect(() => {
+    const main = document.querySelector("#main");
+    // new TocHelper("#main");
+  });
   return (
     <>
-      <div className={styles.page__main}>
+      <div className={styles.page__main} id={"main"}>
         {/* 文章区域 */}
         <div className={styles["article-main"]}>
           {/* 文章内容和评论区 */}
@@ -37,7 +44,9 @@ const Article: NextPage<IArticleProps> = ({
               <div className={styles["article-content"]}>
                 <div /*  className={styles.article} */>
                   {/* 标题 */}
-                  <h1 className={styles["article-title"]}>{title}</h1>
+                  <div className={styles["article-title"]} id={"title"}>
+                    {title}
+                  </div>
                   {/* 作者信息区域 */}
                   <div className={styles["article-info-box"]}>
                     作者：{author} | 创建时间: {createTime}
@@ -48,6 +57,7 @@ const Article: NextPage<IArticleProps> = ({
                       __html: converter.makeHtml(content),
                     }}
                     className={styles.content}
+                    id={"articlebody"}
                   />
                   {/* 透传Markdown文本 */}
                 </div>
@@ -94,9 +104,13 @@ const Article: NextPage<IArticleProps> = ({
             className="sticky-block-box activeBox"
             style={{ marginTop: "60px;" }}
           >
-            <div className="sticky-title">目录</div>
+            <div className="sticky-title">
+              目录
+              {/* <div ref = {elementRef}></div> */}
+            </div>
             {/* <!-- 目录主体 --> */}
             <div className="sticky-content">
+              <Sidebar />
               {/* <!-- <div class="first" ref="listFirstBox"></div> --> */}
               <ul className="sticky-list">
                 <li className="item">
