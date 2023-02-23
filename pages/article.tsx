@@ -44,20 +44,20 @@ const Article = () => {
               <div className="info-box">
                 <div className="userName">
                   <span>{/* {articleDetail.userName} */}</span>
-                  <img src="../assets/img/lv-2.png" alt="" />
+                  <img src="./lv-2.png" alt="" />
                 </div>
                 <div className="position">{/* {articleDetail.jobTitle} */}</div>
               </div>
             </div>
             <div className="stat-item">
               <div>
-                <img src="../assets/img/userZan.png" alt="" />
+                <img src="./userZan.png" alt="" />
               </div>
               <span>获得点赞 {/* {zanObj.number} */}</span>
             </div>
             <div className="stat-item">
               <div>
-                <img src="../assets/img/userEye.png" alt="" />
+                <img src="./userEye.png" alt="" />
               </div>
               <span>文章被阅读 {/* {articleDetail.viewCount} */}</span>
             </div>
@@ -105,7 +105,7 @@ const Article = () => {
                 </div>
                 <div className="item__user-info">
                   小明同学
-                  <img src="../assets/img/lv-2.png" alt="" />
+                  <img src="./lv-2.png" alt="" />
                 </div>
               </div>
               <div className="item">
@@ -117,7 +117,7 @@ const Article = () => {
                 </div>
                 <div className="item__user-info">
                   工匠若水
-                  <img src="../assets/img/lv-2.png" alt="" />
+                  <img src="./lv-2.png" alt="" />
                 </div>
               </div>
               <div className="item">
@@ -129,7 +129,7 @@ const Article = () => {
                 </div>
                 <div className="item__user-info">
                   固体物质搬运工
-                  <img src="../assets/img/lv-2.png" alt="" />
+                  <img src="./lv-2.png" alt="" />
                 </div>
               </div>
             </div>
@@ -141,17 +141,17 @@ const Article = () => {
       <div className={styles["article-suspended-panel"]}>
         <div className="panel-btn">
           <img
-            src="../assets/img/panelZan__on.png"
+            src="./panelZan__on.png"
             alt=""
             // v-if="zanObj.status"
           />
-          <img src="../assets/img/panelZan__off.png" alt="" v-else />
+          <img src="./panelZan__off.png" alt="" v-else />
           <div className="btn-num" /* ref="zanNumBOX" */>
             {/* {zanObj.number} */}
           </div>
         </div>
         <div className={styles["panel-btn"]}>
-          <img src="/panelLiu.png" alt="" />
+          <img src="./panelLiu.png" alt="" />
           <div className={styles["panel-btn"]}>
             {/* {articleDetail.commentCount} */}
           </div>
