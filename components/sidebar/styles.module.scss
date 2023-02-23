@@ -1,0 +1,25 @@
+// ul
+
+.catalog-list {
+  position: relative;
+  line-height: 22px;
+  padding: 0 0 12px;
+  // li
+  .item {
+    font-weight: 400;
+    color: #000;
+
+    // div
+    .a-container {
+      // a
+      .catalog-aTag {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    &.active {
+      color: #fff;
+      background-color: #ff8000;
+    }
+  }
+}
