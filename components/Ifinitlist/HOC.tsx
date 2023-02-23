@@ -110,8 +110,8 @@ const HOC =
                     }}
                   >
                     {/* 渲染区域 */}
-                    {state.data.map((item: any) => (
-                      <div key={item}>
+                    {state.data.map((item: any, index) => (
+                      <div key={index}>
                         {/* 子组件 */}
                         <Component
                           content={item.content}
@@ -130,7 +130,7 @@ const HOC =
                   <div className="signin__top">
                     <div className="first__line">
                       <div className="icon__text">
-                        <img src="../assets/img/day.png" alt="" />
+                        <img src="/day.png" alt="" />
                         {/* {{ showTimeStage }} */}
                       </div>
                       <button className="signedin__btn">已签到</button>
@@ -181,7 +181,7 @@ const HOC =
                         </div>
                         <div className="item__user-info">
                           小明同学
-                          <img src="../assets/img/lv-2.png" alt="" />
+                          <img src="/lv-2.png" alt="" />
                         </div>
                       </div>
                       <div className="item">
@@ -193,7 +193,7 @@ const HOC =
                         </div>
                         <div className="item__user-info">
                           工匠若水
-                          <img src="../assets/img/lv-2.png" alt="" />
+                          <img src="/lv-2.png" alt="" />
                         </div>
                       </div>
                       <div className="item">
@@ -205,7 +205,7 @@ const HOC =
                         </div>
                         <div className="item__user-info">
                           固体物质搬运工
-                          <img src="../assets/img/lv-2.png" alt="" />
+                          <img src="/lv-2.png" alt="" />
                         </div>
                       </div>
                     </div>

@@ -4,8 +4,6 @@ import styles from "./article.module.scss";
 const showdown = require("showdown");
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import TocHelper from "toc-helper";
-import sidebar from "@/components/sidebar";
 import Sidebar from "@/components/sidebar";
 
 export interface IArticleProps {
@@ -24,11 +22,18 @@ const Article: NextPage<IArticleProps> = ({
   content,
 }) => {
   const converter = new showdown.Converter();
-  const elementRef = useRef();
+  const [showElem, setShowElem] = useState(true);
   useEffect(() => {
-    const main = document.querySelector("#main");
-    // new TocHelper("#main");
-  });
+    window.addEventListener("resize", () => {
+      let currentWidth = document.querySelector("#navbar")?.clientWidth;
+      // let list = document.querySelector(".list-left-list");
+      // console.log(list);
+
+      if (currentWidth! >= 1200) {
+        setShowElem(true);
+      } else setShowElem(false);
+    });
+  }, []);
   return (
     <>
       <div className={styles.page__main} id={"main"}>
@@ -38,8 +43,6 @@ const Article: NextPage<IArticleProps> = ({
           <div className={styles["article-area"]}>
             {/* 文章主体区域 */}
             <div className={styles.article}>
-              {/* 文章图片展示 可能没有*/}
-              <div className={styles["article-img"]}>图片</div>
               {/* 文章主体内容 */}
               <div className={styles["article-content"]}>
                 <div /*  className={styles.article} */>
@@ -47,11 +50,12 @@ const Article: NextPage<IArticleProps> = ({
                   <div className={styles["article-title"]} id={"title"}>
                     {title}
                   </div>
+                  {/* 文章图片展示 可能没有*/}
+                  <div className={styles["article-img"]}></div>
                   {/* 作者信息区域 */}
                   <div className={styles["article-info-box"]}>
-                    作者：{author} | 创建时间: {createTime}
+                    作者：{author} | {/* 创建时间: {createTime} */}
                   </div>
-                  <div /* className={styles.description} */>{description}</div>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: converter.makeHtml(content),
@@ -63,60 +67,128 @@ const Article: NextPage<IArticleProps> = ({
                 </div>
               </div>
               {/* 文章标签区域 */}
-              <div className={styles["tag-list-box"]}>文章标签</div>
+              <div className={styles["tag-list-box"]}>
+                <div className={styles["tag-list"]}>
+                  分类：
+                  <span>后端</span>
+                </div>
+                <div className={styles["tag-list"]}>
+                  标签：
+                  <span>后端</span>
+                  <span>程序员</span>
+                </div>
+              </div>
             </div>
             {/* 评论区 */}
-            <div className={styles.comment}>评论区</div>
+            <div className={styles.comment}>
+              {/* 发送评论 */}
+              <div className={styles["comment-form"]}>
+                <div className={styles["form-header"]}>评论</div>
+                <div className={styles["form-content"]}>
+                  <div className={styles["form-userimg"]}>
+                    <img src="/user.png" alt="" />
+                  </div>
+                  <div className={styles["form-box"]}>
+                    <textarea placeholder="输入评论 (Enter换行，Ctrl + Enter发送)"></textarea>
+                    <div className={styles["action-box"]}>
+                      <div className="emoji-btn">😀表情</div>
+                      <div className="image-btn">图片</div>
+                      <div className="submit-box">
+                        <span>Ctrl + Enter</span>
+                        <button className="submit">发表评论</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* 热门评论 */}
+              <div>
+                <div className={styles.title}>
+                  <span>热门评论</span>
+                  <img src="/fire.png" alt="" />
+                </div>
+                <div className={styles.list}>
+                  {/* <!-- 一条评论 --> */}
+                  <div className={styles["comment-item"]}>
+                    <div className={styles["comment-userImg"]}>
+                      <a href="" className={styles.userImg}>
+                        <img
+                          src="https://p9-passport.byteacctimg.com/img/mosaic-legacy/3791/5035712059~300x300.image"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                    <div className={styles["comment-content"]}>
+                      <div className={styles["comment-main"]}>
+                        <div className={styles["user-box"]}>
+                          <span className={styles.name}>青山绿水长流</span>
+                          <span className={styles.level}>
+                            <img src="/lv-2.png" alt="" />
+                          </span>
+                          <span className={styles["jueyou-level"]}>
+                            <img src="/jy.png" alt="" />
+                          </span>
+                          <span className={styles.position}>前端开发</span>
+                          <span className={styles.time}>1个月</span>
+                        </div>
+                        <div className={styles["content-main"]}>
+                          高级程序员的表现形式
+                        </div>
+                        <div className={styles["comment-action-box"]}>
+                          <div className="item-zan">
+                            <img src="/zan__off.png" alt="" />
+                            211
+                          </div>
+                          <div className="item-comNum">
+                            <img src="/ping.png" alt="" />
+                            回复
+                          </div>
+                        </div>
+                      </div>
+                      <div className="subcomment-wrapper"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* 右侧侧边栏 */}
-        <div className={styles.sidebar}>
+        <div
+          className={styles.sidebar}
+          style={{ display: showElem ? "block" : "none" }}
+        >
           {/* 作者信息栏 */} {/* fix1 */}
-          <div className="author-block">
-            <div className="user-item">
-              <div className="userimg">
-                <img alt="用户头像" />
+          <div className={styles["author-block"]}>
+            <div className={styles["user-item"]}>
+              <div className={styles["userimg"]}>
+                <img
+                  src="https://p3-passport.byteimg.com/img/mosaic-legacy/3791/5035712059~100x100.awebp"
+                  alt="用户头像"
+                />
               </div>
-              <div className="info-box">
-                <div className="userName">
+              <div className={styles["info-box"]}>
+                <div className={styles["userName"]}>
                   <span>{/* {articleDetail.userName} */}</span>
-                  <img src="../assets/img/lv-2.png" alt="" />
+                  <img src="/lv-2.png" alt="" />
                 </div>
-                <div className="position">{/* {articleDetail.jobTitle} */}</div>
+                <div className={styles["position"]}>
+                  {/* {articleDetail.jobTitle} */}
+                </div>
               </div>
             </div>
-            <div className="stat-item">
+            <div className={styles["stat-item"]}>
               <div>
-                <img src="../assets/img/userZan.png" alt="" />
+                <img src="/userZan.png" alt="" />
               </div>
               <span>获得点赞 {/* {zanObj.number} */}</span>
             </div>
-            <div className="stat-item">
+            <div className={styles["stat-item"]}>
               <div>
-                <img src="../assets/img/userEye.png" alt="" />
+                <img src="/userEye.png" alt="" />
               </div>
               <span>文章被阅读 {/* {articleDetail.viewCount} */}</span>
-            </div>
-          </div>
-          {/*  文章目录 */}
-          <div
-            className="sticky-block-box activeBox"
-            style={{ marginTop: "60px;" }}
-          >
-            <div className="sticky-title">
-              目录
-              {/* <div ref = {elementRef}></div> */}
-            </div>
-            {/* <!-- 目录主体 --> */}
-            <div className="sticky-content">
-              <Sidebar />
-              {/* <!-- <div class="first" ref="listFirstBox"></div> --> */}
-              <ul className="sticky-list">
-                <li className="item">
-                  <div className="a-container"></div>
-                </li>
-              </ul>
             </div>
           </div>
           {/* 掘金官网链接 */}
@@ -130,69 +202,46 @@ const Article: NextPage<IArticleProps> = ({
               <div>一个帮助开发者成长的社区</div>
             </div>
           </div>
-          {/* 作者榜 */}
-          <div className="user-body user-top">
-            <div className="header-block">🎖️作者榜</div>
-            <div className="user-list">
-              <div className="item">
-                <div className="item__img-box">
-                  <img
-                    src="https://p3-passport.byteacctimg.com/img/mosaic-legacy/3792/5112637127~300x300.image"
-                    alt=""
-                  />
-                </div>
-                <div className="item__user-info">
-                  小明同学
-                  <img src="../assets/img/lv-2.png" alt="" />
-                </div>
-              </div>
-              <div className="item">
-                <div className="item__img-box">
-                  <img
-                    src="https://p9-passport.byteacctimg.com/img/mosaic-legacy/3793/3131589739~300x300.image"
-                    alt=""
-                  />
-                </div>
-                <div className="item__user-info">
-                  工匠若水
-                  <img src="../assets/img/lv-2.png" alt="" />
-                </div>
-              </div>
-              <div className="item">
-                <div className="item__img-box">
-                  <img
-                    src="https://p9-passport.byteacctimg.com/img/mosaic-legacy/3796/2975850990~300x300.image"
-                    alt=""
-                  />
-                </div>
-                <div className="item__user-info">
-                  固体物质搬运工
-                  <img src="../assets/img/lv-2.png" alt="" />
-                </div>
-              </div>
+          {/*  文章目录 */}
+          <div
+            // className="sticky-block-box activeBox"
+            className={styles["sticky-block-box"]}
+            // style={{ marginTop: "60px;" }}
+          >
+            <div className={styles["sticky-title"]}>
+              目录
+              {/* <div ref = {elementRef}></div> */}
             </div>
-            <div className="author-list">完整榜单&nbsp;&nbsp;&gt;</div>
+            {/* <!-- 目录主体 --> */}
+            <div className={styles["sticky-content"]}>
+              <Sidebar />
+              {/* <!-- <div class="first" ref="listFirstBox"></div> --> */}
+              <ul className="sticky-list">
+                <li className="item">
+                  <div className="a-container"></div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
       {/* 左侧功能面板 */}
-      <div className={styles["article-suspended-panel"]}>
-        <div className="panel-btn">
-          <img
-            src="../assets/img/panelZan__on.png"
-            alt=""
-            v-if="zanObj.status"
-          />
-          <img src="../assets/img/panelZan__off.png" alt="" v-else />
-          <div className="btn-num" /* ref="zanNumBOX" */>
-            {/* {zanObj.number} */}
-          </div>
+      <div
+        className={styles["article-suspended-panel"]}
+        style={{ display: showElem ? "block" : "none" }}
+      >
+        <div className={styles["panel-btn"]}>
+          <img src="/panelZan__on.png" alt="" />
+          {/* <img src="/panelZan__off.png" alt="" /> */}
+          {/* <div className="btn-num"> */}
+          {/* {zanObj.number} */}
+          {/* </div> */}
         </div>
         <div className={styles["panel-btn"]}>
           <img src="/panelLiu.png" alt="" />
-          <div className={styles["panel-btn"]}>
-            {/* {articleDetail.commentCount} */}
-          </div>
+          {/* <div className={styles["panel-btn"]}> */}
+          {/* {articleDetail.commentCount} */}
+          {/* </div> */}
         </div>
         <div className={styles["panel-btn"]}>
           <img src="/panelStar.png" alt="" />

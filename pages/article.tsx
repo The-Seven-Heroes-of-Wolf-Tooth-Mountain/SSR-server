@@ -143,7 +143,7 @@ const Article = () => {
           <img
             src="../assets/img/panelZan__on.png"
             alt=""
-            v-if="zanObj.status"
+            // v-if="zanObj.status"
           />
           <img src="../assets/img/panelZan__off.png" alt="" v-else />
           <div className="btn-num" /* ref="zanNumBOX" */>

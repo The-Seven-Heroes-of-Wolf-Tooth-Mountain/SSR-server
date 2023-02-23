@@ -1,14 +1,31 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 export interface INavBarProps {}
 import juejinLogo from "@/img/juejin-logo.png";
 import vip from "@/img/juejinVip.png";
-import user from "@/img//user.png";
+import user from "@/public/user.png";
 import Image from "next/image";
 import useReactive from "../Ifinitlist/useReactive";
 
 export const NavBar: FC<INavBarProps> = ({}) => {
+  const [showElem, setShowElem] = useState(true); //根据宽度隐藏
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      const currentWidth = document.querySelector("#navbar")?.clientWidth;
+
+      if (currentWidth! >= 1200) {
+        setShowElem(true);
+      } else setShowElem(false);
+    });
+    window.addEventListener("", () => {
+      const currentWidth = document.querySelector("#navbar")?.clientWidth;
+
+      if (currentWidth! >= 1200) {
+        setShowElem(true);
+      } else setShowElem(false);
+    });
+  }, []);
   return (
-    <div className="page__header">
+    <div className="page__header" id="navbar">
       <div className="page__header__box activeBox" /* ref="headerBox" */>
         {/* <!-- 导航内容 --> */}
         <div className="page__header__nav">
@@ -27,34 +44,34 @@ export const NavBar: FC<INavBarProps> = ({}) => {
                 className="list-left"
                 style={{ width: "100%" }} /* ref="listLeftBox" */
               >
-                <div className="list-left-list">
+                <div
+                  className="list-left-list"
+                  style={{ display: showElem ? "block" : "none" }}
+                >
                   {/* <!-- 下端列表 --> */}
                   <ul className="list__contents" /* ref="listBox" */>
                     <li>
-                      <a
-                        href="javascript:scroll(0,0)"
-                        style={{ color: "#1e80ff" }}
-                      >
+                      <a href="#!" style={{ color: "#1e80ff" }}>
                         首页
                       </a>
                     </li>
                     <li>
-                      <a href="#">沸点</a>
+                      <a href="#!">沸点</a>
                     </li>
                     <li>
-                      <a href="#">课程</a>
+                      <a href="#!">课程</a>
                     </li>
                     <li>
-                      <a href="#">直播</a>
+                      <a href="#!">直播</a>
                     </li>
                     <li>
-                      <a href="#">资讯</a>
+                      <a href="#!">资讯</a>
                     </li>
                     <li>
-                      <a href="#">活动</a>
+                      <a href="#!">活动</a>
                     </li>
                     <li className="com">
-                      <a href="#" className="community">
+                      <a href="#!" className="community">
                         开放社区
                       </a>
                       <ul className="community__list">
@@ -64,13 +81,13 @@ export const NavBar: FC<INavBarProps> = ({}) => {
                       </ul>
                     </li>
                     <li>
-                      <a href="#">商城</a>
+                      <a href="#!">商城</a>
                     </li>
                     <li>
-                      <a href="#">APP</a>
+                      <a href="#!">APP</a>
                     </li>
                     <li>
-                      <a href="#">插件</a>
+                      <a href="#!">插件</a>
                     </li>
                   </ul>
                 </div>
@@ -164,47 +181,47 @@ export const NavBar: FC<INavBarProps> = ({}) => {
           </div>
         </div>
         {/* <!-- 导航标签 --> */}
-        <div className="page__header__tag" v-if="headeTag">
+        <div className="page__header__tag">
           <div className="tag__contents" /* ref="tagContent" */>
             <div className="tag__list">
               <ul className="list__contents">
                 <li>
-                  <a href="#" style={{ color: "#1e80ff" }}>
+                  <a href="#!" style={{ color: "#1e80ff" }}>
                     综合
                   </a>
                 </li>
                 <li>
-                  <a href="#">关注</a>
+                  <a href="#!">关注</a>
                 </li>
                 <li>
-                  <a href="#">后端</a>
+                  <a href="#!">后端</a>
                 </li>
                 <li>
-                  <a href="#">前端</a>
+                  <a href="#!">前端</a>
                 </li>
                 <li>
-                  <a href="#">Android</a>
+                  <a href="#!">Android</a>
                 </li>
                 <li>
-                  <a href="#">iOS</a>
+                  <a href="#!">iOS</a>
                 </li>
                 <li>
-                  <a href="#">人工智能</a>
+                  <a href="#!">人工智能</a>
                 </li>
                 <li>
-                  <a href="#">开发工具</a>
+                  <a href="#!">开发工具</a>
                 </li>
                 <li>
-                  <a href="#">代码人生</a>
+                  <a href="#!">代码人生</a>
                 </li>
                 <li>
-                  <a href="#">阅读</a>
+                  <a href="#!">阅读</a>
                 </li>
               </ul>
             </div>
             <div className="tag__manage" /* ref="tagManage" */>
               <span>
-                <a href="#">标签管理</a>
+                <a href="#!">标签管理</a>
               </span>
             </div>
           </div>
@@ -213,7 +230,7 @@ export const NavBar: FC<INavBarProps> = ({}) => {
 
       {/* <!-- 一键回到顶部 --> */}
       <div className="page__header__side" v-show="headerSide">
-        <a href="javascript:scroll(0,0)">
+        <a href="#!">
           <div className="backTop">
             <img src="/top.png" alt="" />
           </div>
