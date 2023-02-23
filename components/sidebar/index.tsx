@@ -1,6 +1,5 @@
 /* 根据文章内容动态生成目录 */
 import styles from "./styles.module.scss";
-import Index from "@/pages/list";
 import { useEffect, useState } from "react";
 
 export default function Sidebar() {
