@@ -6,6 +6,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # (写在前面)CMS
 
+<<<<<<< HEAD
+(安装对应依赖，可以先 cd 到项目总目录下，再执行:   npm install)
+=======
 本组的 CMS 采用 strapi, 是在 czm 老师的仓库基础上建立的，因此使用老师的 strapi 账号
 仓库地址：https://github.com/czm1290433700/nextjs-cms
 
@@ -26,6 +29,7 @@ npm run develop
 ```
 
 ## Nextjs 启动
+>>>>>>> upstream/dev
 
 First, run the development server:
 
